@@ -9,9 +9,10 @@ const stateControl = storeState();
 // We create four functions using our function factory. We could easily create 
 //many more.
 const feed = changeState("soil")(1);
-const blueFood = changeState("soil")(5);
+const venusFlytrap = "venusFlytrap";
+const blueFood = changeState(venusFlytrap, "soil")(5);
 const hydrate = changeState("water")(1);
-const giveLight = changeState("light")(2);
+const giveLight = changeState(venusFlytrap, "light")(2);
 
 
 $(document).ready(function(){
@@ -21,9 +22,10 @@ $(document).ready(function(){
   //to alter soil. You can easily add more.
   $('#feed').click(function(){
     const newState=stateControl(blueFood);
-    const newerState=stateControl(giveLight);
-    $("#soil-value").text(`Soil: ${newState.soil}`);
-    $("#light-value").text(`Light: ${newerState.light}`);
+    // const newerState=stateControl(giveLight);
+    console.log(newState);
+    $("#soil-value").text(`Soil: ${newState.venusFlytrap.soil}`);
+    // $("#light-value").text(`Light: ${newerState.venusFlytrap.light}`);
   });
 
   // This function doesn't actually do anything useful in this application - it just 
@@ -34,7 +36,7 @@ $(document).ready(function(){
   
     // We just need to call stateControl() without arguments to see our current state.
     const currentState=stateControl();
-    $("#soil-value").text(`SOIL-STATE: ${currentState.soil}`);
-    $("#light-value").text(`LIGHT-STATE: ${currentState.light}`);
+    $("#soil-value").text(`SOIL-STATE: ${currentState.venusFlytrap.soil}`);
+    // $("#light-value").text(`LIGHT-STATE: ${currentState.venusFlytrap.light}`);
   });
 });
